@@ -8,6 +8,7 @@ number_votes = []
 candidates = []
 all_candidates = []
 counter = []
+averagelist = []
 
 # open and read csv
 with open(poll_csv, 'r') as csvfile:
@@ -27,24 +28,35 @@ with open(poll_csv, 'r') as csvfile:
         # put row[2] in its own list
         all_candidates.append(row[2])
 
-    for x in range(len(candidates)):
-        count = all_candidates.count(candidates[x])
-        counter.append(count)
-        average = round((count / total_number_votes)*100,3)
-        
-        print(f'{candidates[x]}: {average}% ({count})')
-        
-    winner = max(counter)
-
-    print(f'Winner: {candidates[counter.index(winner)]}')
-            
-    # print results
     print(f'Election Results')
     print(f'-----------------------------------')
     print(f'Total Votes: {total_number_votes}')
     print(f'-----------------------------------')
-    print(f'{candidates[x]}:') #khan
-    print(f'{candidates[x]}:') #correy
-    print(f'{candidates[x]}:') #li
-    print(f'{candidates[x]}:') #o tooley
+
+    for x in range(len(candidates)):
+        count = all_candidates.count(candidates[x])
+        counter.append(count)
+        average = str(round((count / total_number_votes)*100,3)) 
+        averagelist.append(average)
+        print(f'{candidates[x]}: {averagelist[x]}% ({counter[x]})') 
+        #print(f'{candidates[x]}: {average}% ({count})') #good
+        
+    winner = max(counter) 
+
     print(f'-----------------------------------')
+    print(f'Winner: {candidates[counter.index(winner)]}')
+    print(f'-----------------------------------')
+
+# write textfile
+with open("PyPoll_Output.txt","w") as text_file:
+    print(f'Election Results',file=text_file)
+    print(f'-----------------------------------',file=text_file)
+    print(f'Total Votes: {total_number_votes}',file=text_file)
+    print(f'-----------------------------------',file=text_file)
+    print(f'{candidates[0]}: {averagelist[0]}% ({counter[0]})',file=text_file)
+    print(f'{candidates[1]}: {averagelist[1]}% ({counter[1]})',file=text_file)
+    print(f'{candidates[2]}: {averagelist[2]}% ({counter[2]})',file=text_file)
+    print(f'{candidates[3]}: {averagelist[3]}% ({counter[3]})',file=text_file)
+    print(f'-----------------------------------',file=text_file)
+    print(f'Winner: {candidates[counter.index(winner)]}',file=text_file)
+    print(f'-----------------------------------',file=text_file)
