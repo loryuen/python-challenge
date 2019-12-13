@@ -53,10 +53,8 @@ with open("PyPoll_Output.txt","w") as text_file:
     print(f'-----------------------------------',file=text_file)
     print(f'Total Votes: {total_number_votes}',file=text_file)
     print(f'-----------------------------------',file=text_file)
-    print(f'{candidates[0]}: {averagelist[0]}% ({counter[0]})',file=text_file)
-    print(f'{candidates[1]}: {averagelist[1]}% ({counter[1]})',file=text_file)
-    print(f'{candidates[2]}: {averagelist[2]}% ({counter[2]})',file=text_file)
-    print(f'{candidates[3]}: {averagelist[3]}% ({counter[3]})',file=text_file)
+    for x in range(len(candidates)):
+        print(f'{candidates[x]}: {averagelist[x]}% ({counter[x]})',file=text_file)
     print(f'-----------------------------------',file=text_file)
     print(f'Winner: {candidates[counter.index(winner)]}',file=text_file)
     print(f'-----------------------------------',file=text_file)
